@@ -1,0 +1,96 @@
+=== NEXUS vs TITAN battle (from results.csv) ===
+Games played : 10
+Wins         : NEXUS 0, TITAN 0
+Draws        : 10
+Distinct games (different move sequences) : 6
+Starting player won 0, second player won 0, draws 10
+Average moves per game : 9.00
+Average game time      : 3.91 ms
+
+NEXUS  avg nodes/game    337.1 | avg pruned/game    180.6 | avg search time/game    1.79 ms
+TITAN  avg nodes/game    357.5 | avg pruned/game    184.8 | avg search time/game    2.08 ms
+
+NEXUS  as first player: 0 wins / 5 draws / 0 losses   |  as second player: 0 wins / 5 draws / 0 losses
+TITAN  as first player: 0 wins / 5 draws / 0 losses   |  as second player: 0 wins / 5 draws / 0 losses
+
+| Game | First | Winner | Moves | NEXUS nodes | TITAN nodes | NEXUS pruned | TITAN pruned | Time (ms) |
+|---|---|---|---|---|---|---|---|---|
+| 1 | NEXUS | DRAW | 9 | 363 | 233 | 252 | 139 | 3.42 |
+| 2 | TITAN | DRAW | 9 | 268 | 453 | 138 | 226 | 4.07 |
+| 3 | NEXUS | DRAW | 9 | 402 | 309 | 211 | 133 | 3.95 |
+| 4 | TITAN | DRAW | 9 | 276 | 386 | 146 | 249 | 3.65 |
+| 5 | NEXUS | DRAW | 9 | 370 | 309 | 207 | 137 | 3.99 |
+| 6 | TITAN | DRAW | 9 | 276 | 386 | 146 | 249 | 3.64 |
+| 7 | NEXUS | DRAW | 9 | 421 | 314 | 216 | 132 | 4.00 |
+| 8 | TITAN | DRAW | 9 | 306 | 418 | 136 | 225 | 4.08 |
+| 9 | NEXUS | DRAW | 9 | 421 | 314 | 216 | 132 | 4.10 |
+| 10 | TITAN | DRAW | 9 | 268 | 453 | 138 | 226 | 4.17 |
+
+=== Depth experiment (from depth_experiment.csv) ===
+Results of an H1 agent at depth d vs. a fixed baseline (20 games per depth, alternating start), and cost per move:
+
+| Depth | W / D / L | Avg nodes per move | Avg pruned per move | Avg time per move (ms) |
+|---|---|---|---|---|
+| 1 | 0 / 14 / 6 | 5.3 | 0.0 | 0.040 |
+| 2 | 0 / 20 / 0 | 21.5 | 10.1 | 0.137 |
+| 3 | 0 / 20 / 0 | 75.9 | 40.2 | 0.406 |
+| 4 | 0 / 20 / 0 | 236.2 | 148.4 | 1.198 |
+| 5 | 0 / 20 / 0 | 648.2 | 337.2 | 2.994 |
+| 6 | 0 / 20 / 0 | 1220.1 | 801.2 | 4.907 |
+| 7 | 0 / 20 / 0 | 2890.3 | 1340.9 | 10.383 |
+| 8 | 0 / 20 / 0 | 3532.0 | 1714.0 | 10.281 |
+| 9 | 0 / 20 / 0 | 4348.7 | 1634.2 | 9.579 |
+
+First move on an empty board (same position, same depth):
+
+| Depth | Minimax nodes | Alpha-Beta nodes | Alpha-Beta pruned | Nodes saved | Minimax time (ms) | Alpha-Beta time (ms) | Score | Best cell(s) |
+|---|---|---|---|---|---|---|---|---|
+| 1 | 9 | 9 | 0 | 0.0% | 0.052 | 0.056 | 4 | 4 |
+| 2 | 81 | 45 | 36 | 44.44% | 0.452 | 0.241 | 1 | 4 |
+| 3 | 585 | 184 | 163 | 68.55% | 3.364 | 0.991 | 12 | 4 |
+| 4 | 3609 | 836 | 651 | 76.84% | 20.926 | 4.501 | 0 | 4 |
+| 5 | 18729 | 2993 | 1748 | 84.02% | 97.847 | 14.755 | 12 | 4 |
+| 6 | 73449 | 6174 | 4881 | 91.59% | 382.345 | 27.781 | 0 | 4 |
+| 7 | 221625 | 19367 | 9375 | 91.26% | 875.819 | 75.550 | 11 | 4 |
+| 8 | 422073 | 24554 | 12919 | 94.18% | 1426.833 | 77.001 | 0 | 0 1 2 3 4 5 6 7 8 |
+| 9 | 549945 | 31620 | 12187 | 94.25% | 1128.884 | 70.187 | 0 | 0 1 2 3 4 5 6 7 8 |
+
+Did a deeper search change the decisions? (all 4,520 reachable positions, compared with the previous depth):
+
+| Depth | Identical best-move set | Completely different best moves |
+|---|---|---|
+| 2 | 78.05% | 4.96% |
+| 3 | 89.51% | 3.85% |
+| 4 | 94.51% | 1.15% |
+| 5 | 96.86% | 0.44% |
+| 6 | 98.94% | 0.0% |
+| 7 | 99.82% | 0.0% |
+| 8 | 99.98% | 0.0% |
+| 9 | 100.0% | 0.0% |
+
+=== Equal-depth battles (from equal_depth_battles.csv) ===
+NEXUS (H1) vs TITAN (H2), both at the same depth (20 games each, alternating start):
+
+| Depth | NEXUS wins | TITAN wins | Draws | Wins by starting player | Distinct games | NEXUS nodes/game | TITAN nodes/game | NEXUS ms/game | TITAN ms/game |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 | 13 | 0 | 7 | 10 | 14 | 21.7 | 20.9 | 0.16 | 0.17 |
+| 2 | 0 | 0 | 20 | 0 | 15 | 96.6 | 96.5 | 0.57 | 0.62 |
+| 3 | 0 | 0 | 20 | 0 | 11 | 350.5 | 355.8 | 1.83 | 2.03 |
+| 4 | 0 | 0 | 20 | 0 | 18 | 1098.2 | 1040.5 | 5.52 | 5.76 |
+| 5 | 0 | 0 | 20 | 0 | 17 | 2902.8 | 3092.4 | 13.33 | 15.64 |
+
+=== Agent decisions (from agent_decisions.csv) ===
+NEXUS vs TITAN: do they choose different moves (by number of pieces already on the board)?
+
+| Pieces on board | Positions | Identical best moves | Different but overlapping | Completely different |
+|---|---|---|---|---|
+| 0 | 1 | 1 | 0 | 0 |
+| 1 | 9 | 9 | 0 | 0 |
+| 2 | 72 | 44 | 28 | 0 |
+| 3 | 252 | 198 | 54 | 0 |
+| 4 | 756 | 708 | 40 | 8 |
+| 5 | 1140 | 1064 | 76 | 0 |
+| 6 | 1372 | 1372 | 0 | 0 |
+| 7 | 696 | 696 | 0 | 0 |
+| 8 | 222 | 222 | 0 | 0 |
+| ALL | 4520 | 4314 | 198 | 8 |
